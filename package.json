@@ -41,7 +41,8 @@
     },
     "rules": {
       "space-before-function-paren": ["error", "never"],
-      "semi": 0
+      "semi": 0,
+      "keyword-spacing": 0
     }
   },
   "browserslist": [

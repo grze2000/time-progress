@@ -5,7 +5,7 @@
         <h2 class="header__title" :style="{color: color}">{{ progress.title }}</h2>
         <div class="header__description">
           <div class="header__description--active">{{ progress.description }}</div>
-          <div class="header__description--inactive">{{ remainingTime }}</div>
+          <div class="header__description--inactive">{{ remainingTime ? remainingTime : 'Zakończono' }}</div>
         </div>
       </div>
       <div class="header__actions">
@@ -16,7 +16,7 @@
       <div class="progress__bar">
         <span class="progress__time progress__time--start">{{ progress.startTime | dateTime }}</span>
         <span class="progress__time progress__time--end">{{ progress.endTime | dateTime }}</span>
-        <span class="progress__time progress__time--remaining">pozostało: {{ remainingTime }}</span>
+        <span class="progress__time progress__time--remaining">{{ remainingTime ? `${progress.startTime > date ? 'Do rozpoczęcia:' : 'Pozostało:'} ${remainingTime}` : 'Zakończono' }}</span>
         <div class="progress__meter" :style="{'background-color': color, width: `${value}%`}">
           <span class="progress__meter--text">{{ value }}%</span>
         </div>
@@ -56,7 +56,13 @@ export default {
   },
   computed: {
     remainingTime() {
-      return new Date(this.progress.endTime - this.date).toISOString().substr(11, 8);
+      if(this.progress.startTime > this.date) {
+        return new Date(this.progress.startTime - this.date).toISOString().substr(11, 8);
+      } else if(this.progress.endTime > this.date) {
+        return new Date(this.progress.endTime - this.date).toISOString().substr(11, 8);
+      } else {
+        return null;
+      }
     },
     value() {
       const totalTime = (this.progress.endTime - this.progress.startTime) / 1000;
@@ -75,10 +81,11 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../scss/mixins.scss';
+
 .progress {
-  background-color: #ffffff;
-  border-radius: 25px;
-  padding: 20px 30px;
+  @include container;
+
   font-size: 0.9rem;
   font-weight: bold;
   color: #a8a8a8;
