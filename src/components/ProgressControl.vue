@@ -6,18 +6,25 @@
     </div>
     <transition name="toggle">
       <div class="control__content" v-if="open">
-        Hello content
+        <date-picker v-model="startTime" type="datetime"></date-picker>
+        <date-picker v-model="endTime" type="datetime"></date-picker>
       </div>
     </transition>
   </div>
 </template>
 
 <script>
+import DatePicker from 'vue2-datepicker';
+import 'vue2-datepicker/index.css';
+
 export default {
   name: 'ProgressControl',
+  components: { DatePicker },
   data() {
     return {
-      open: false
+      open: false,
+      startTime: null,
+      endTime: null
     }
   }
 }
