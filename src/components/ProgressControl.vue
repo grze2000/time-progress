@@ -6,8 +6,14 @@
     </div>
     <transition name="toggle">
       <div class="control__content" v-if="open">
-        <date-picker v-model="startTime" type="datetime"></date-picker>
-        <date-picker v-model="endTime" type="datetime"></date-picker>
+        <div class="form">
+          <date-picker v-model="startTime" type="datetime" class="form__datepicker"></date-picker>
+          <date-picker v-model="endTime" type="datetime" class="form__datepicker"></date-picker>
+          <input type="text" placeholder="Tytuł" class="form__textfield">
+          <input type="text" placeholder="Opis" class="form__textfield">
+          <input type="color" class="form__colorpicker">
+          <button class="form__submit-btn">Dodaj</button>
+        </div>
       </div>
     </transition>
   </div>
@@ -22,7 +28,7 @@ export default {
   components: { DatePicker },
   data() {
     return {
-      open: false,
+      open: true,
       startTime: null,
       endTime: null
     }
@@ -41,6 +47,10 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: center;
+  }
+
+  &__content {
+    margin-top: 15px;
   }
 
   &__show-btn {
@@ -70,5 +80,34 @@ export default {
 }
 .toggle-enter, .toggle-leave-to {
   max-height: 0;
+}
+.form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) auto 1fr;
+  grid-gap: 10px;
+  align-items: center;
+
+  &__datepicker {
+    width: 100%;
+  }
+
+  &__textfield {
+    @include input-border;
+    padding: 9px;
+  }
+
+  &__submit-btn {
+    @include input-border;
+    @include form-btn;
+    padding: 9px;
+    font-weight: bold;
+  }
+
+  &__colorpicker {
+    @include input-border;
+    @include form-btn;
+    height: 100%;
+    box-sizing: border-box;
+  }
 }
 </style>
