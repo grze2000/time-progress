@@ -2,7 +2,7 @@
   <article class="progress">
     <div class="progress__header">
       <div class="header__content">
-        <h2 class="header__title" :style="{color: color}">{{ progress.title }}</h2>
+        <h2 class="header__title" :style="{color: progress.color}">{{ progress.title }}</h2>
         <div class="header__description">
           <div class="header__description--active">{{ progress.description }}</div>
           <div class="header__description--inactive">{{ remainingTime ? remainingTime : 'Zakończono' }}</div>
@@ -17,7 +17,7 @@
         <span class="progress__time progress__time--start">{{ progress.startTime | dateTime }}</span>
         <span class="progress__time progress__time--end">{{ progress.endTime | dateTime }}</span>
         <span class="progress__time progress__time--remaining">{{ remainingTime ? `${progress.startTime > date ? 'Do rozpoczęcia:' : 'Pozostało:'} ${remainingTime}` : 'Zakończono' }}</span>
-        <div class="progress__meter" :style="{'background-color': color, width: `${value}%`}">
+        <div class="progress__meter" :style="{'background-color': progress.color, width: `${value}%`}">
           <span class="progress__meter--text">{{ value }}%</span>
         </div>
       </div>
@@ -46,11 +46,11 @@ export default {
       endTime: {
         type: Date,
         required: true
+      },
+      color: {
+        type: String,
+        default: '#00ff00'
       }
-    },
-    color: {
-      type: String,
-      default: '#00ff00'
     },
     date: Date
   },

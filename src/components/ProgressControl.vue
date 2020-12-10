@@ -7,12 +7,12 @@
     <transition name="toggle">
       <div class="control__content" v-if="open">
         <div class="form">
-          <date-picker v-model="startTime" type="datetime" class="form__datepicker"></date-picker>
-          <date-picker v-model="endTime" type="datetime" class="form__datepicker"></date-picker>
-          <input type="text" placeholder="Tytuł" class="form__textfield">
-          <input type="text" placeholder="Opis" class="form__textfield">
-          <input type="color" class="form__colorpicker">
-          <button class="form__submit-btn">Dodaj</button>
+          <date-picker v-model="progress.startTime" type="datetime" class="form__datepicker"></date-picker>
+          <date-picker v-model="progress.endTime" type="datetime" class="form__datepicker"></date-picker>
+          <input v-model="progress.title" type="text" placeholder="Tytuł" class="form__textfield">
+          <input v-model="progress.description" type="text" placeholder="Opis" class="form__textfield">
+          <input v-model="progress.color" type="color" class="form__colorpicker">
+          <button class="form__submit-btn" @click="$emit('add', progress)">Dodaj</button>
         </div>
       </div>
     </transition>
@@ -28,9 +28,14 @@ export default {
   components: { DatePicker },
   data() {
     return {
-      open: true,
-      startTime: null,
-      endTime: null
+      progress: {
+        title: '',
+        color: '#000000',
+        description: '',
+        startTime: null,
+        endTime: null
+      },
+      open: true
     }
   }
 }
