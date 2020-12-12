@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="header__actions">
-        <button class="btn btn--exit"></button>
+        <button class="btn btn--exit" @click="$emit('delete')"></button>
       </div>
     </div>
     <div class="progress__bar-wrapper">
@@ -30,6 +30,7 @@ export default {
   name: 'Progress',
   props: {
     progress: {
+      timestamp: Number,
       title: {
         type: String,
         required: true,

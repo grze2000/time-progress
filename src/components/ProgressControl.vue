@@ -12,7 +12,7 @@
           <input v-model="progress.title" type="text" placeholder="Tytuł" class="form__textfield">
           <input v-model="progress.description" type="text" placeholder="Opis" class="form__textfield">
           <input v-model="progress.color" type="color" class="form__colorpicker">
-          <button class="form__submit-btn" @click="$emit('add', progress)">Dodaj</button>
+          <button class="form__submit-btn" @click="addProgressbar">Dodaj</button>
         </div>
       </div>
     </transition>
@@ -36,6 +36,18 @@ export default {
         endTime: null
       },
       open: true
+    }
+  },
+  methods: {
+    addProgressbar() {
+      this.$emit('add', { timestamp: (new Date()).getTime(), ...this.progress });
+      this.progress = {
+        title: '',
+        color: '#000000',
+        description: '',
+        startTime: null,
+        endTime: null
+      }
     }
   }
 }

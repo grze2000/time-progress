@@ -1,7 +1,12 @@
 <template>
   <div class="app">
     <ProgressControl @add="progressbarList.push($event)"></ProgressControl>
-    <Progress v-for="progress in progressbarList" :key="progress.title" :progress="progress" :date="date"></Progress>
+    <Progress v-for="progress in progressbarList"
+      :key="progress.timestamp"
+      :progress="progress"
+      :date="date"
+      @delete="deleteProgressbar(progress)"
+    ></Progress>
   </div>
 </template>
 
@@ -25,6 +30,11 @@ export default {
     this.timer = setInterval(() => {
       this.date = new Date();
     }, 1000);
+  },
+  methods: {
+    deleteProgressbar(progress) {
+      this.progressbarList.splice(this.progressbarList.findIndex(x => x.timestamp === progress.timestamp), 1);
+    }
   }
 }
 </script>
