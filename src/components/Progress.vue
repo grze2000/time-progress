@@ -180,6 +180,7 @@ export default {
     transform: none;
     visibility: visible;
     opacity: 1;
+    min-height: 1em;
   }
   .header__description--inactive {
     transform: none;
@@ -208,6 +209,7 @@ export default {
     &--active {
       visibility: hidden;
       opacity: 0;
+      min-height: 1em;
     }
 
     &--inactive {
