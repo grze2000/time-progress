@@ -55,12 +55,22 @@ export default {
     },
     date: Date
   },
+  methods: {
+    calculateTimeBetweenDates(date1, date2) {
+      const time = (date1.getTime() - date2.getTime()) / 1000;
+      const seconds = Math.floor(time % 60);
+      const minutes = Math.floor((time / 60) % 60);
+      const hours = Math.floor(time / 3600 % 24);
+      const days = Math.floor(time / 86400);
+      return `${days > 0 ? days + ':' : ''}${hours > 9 ? hours : '0' + hours}:${minutes > 9 ? minutes : '0' + minutes}:${seconds > 9 ? seconds : '0' + seconds}`;
+    }
+  },
   computed: {
     remainingTime() {
       if(this.progress.startTime > this.date) {
-        return new Date(this.progress.startTime - this.date).toISOString().substr(11, 8);
+        return this.calculateTimeBetweenDates(this.progress.startTime, this.date);
       } else if(this.progress.endTime > this.date) {
-        return new Date(this.progress.endTime - this.date).toISOString().substr(11, 8);
+        return this.calculateTimeBetweenDates(this.progress.endTime, this.date);
       } else {
         return null;
       }
