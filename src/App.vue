@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <ProgressControl @add="progressbarList.push($event)"></ProgressControl>
+    <ProgressControl @add="addProgressbar"></ProgressControl>
     <Progress v-for="progress in progressbarList"
       :key="progress.timestamp"
       :progress="progress"
@@ -23,17 +23,27 @@ export default {
   data() {
     return {
       progressbarList: [],
-      date: null
+      date: new Date()
     }
   },
   created() {
     this.timer = setInterval(() => {
       this.date = new Date();
     }, 1000);
+    this.progressbarList = (JSON.parse(localStorage.getItem('progressbarList')) || []).map(x => {
+      x.endTime = new Date(x.endTime);
+      x.startTime = new Date(x.startTime);
+      return x;
+    });
   },
   methods: {
+    addProgressbar(progress) {
+      this.progressbarList.push(progress);
+      localStorage.setItem('progressbarList', JSON.stringify(this.progressbarList));
+    },
     deleteProgressbar(progress) {
       this.progressbarList.splice(this.progressbarList.findIndex(x => x.timestamp === progress.timestamp), 1);
+      localStorage.setItem('progressbarList', JSON.stringify(this.progressbarList));
     }
   }
 }
