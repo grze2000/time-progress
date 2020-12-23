@@ -1,5 +1,5 @@
 <template>
-  <article class="progress">
+  <article :class="['progress', {'locked': progress.locked}]">
     <div class="progress__header">
       <div class="header__content">
         <h2 class="header__title" :style="{color: progress.color}">{{ progress.title }}</h2>
@@ -9,6 +9,7 @@
         </div>
       </div>
       <div class="header__actions">
+        <button class="btn btn--lock" @click="progress.locked = !progress.locked"></button>
         <button class="btn btn--exit" @click="$emit('delete')"></button>
       </div>
     </div>
@@ -51,7 +52,8 @@ export default {
       color: {
         type: String,
         default: '#00ff00'
-      }
+      },
+      locked: Boolean
     },
     date: Date
   },
@@ -157,7 +159,7 @@ export default {
     }
   }
 }
-.progress:hover {
+.progress:hover, .progress.locked {
   .progress__bar-wrapper {
     margin-top: 30px;
   }
@@ -246,12 +248,23 @@ export default {
     padding: 0;
   }
 
-  &--exit:before {
-    content: "✖";
+  &::before {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
+  &--exit:before {
+    content: "✖";
+  }
+
+  &--lock:before {
+    content: "↧"
+  }
+}
+
+.progress.locked .btn--lock:before {
+  content: "↥";
 }
 </style>

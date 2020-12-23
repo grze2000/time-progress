@@ -33,7 +33,8 @@ export default {
         color: '#000000',
         description: '',
         startTime: null,
-        endTime: null
+        endTime: null,
+        locked: false
       },
       open: true
     }
