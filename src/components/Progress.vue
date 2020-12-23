@@ -253,18 +253,19 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-family: "fontello";
+    font-size: 14px;
   }
 
   &--exit:before {
-    content: "✖";
+    content: "\e801";
   }
 
   &--lock:before {
-    content: "↧"
+    content: "\e800";
   }
 }
-
 .progress.locked .btn--lock:before {
-  content: "↥";
+  content: "\f13e";
 }
 </style>

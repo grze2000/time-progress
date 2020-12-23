@@ -2,7 +2,9 @@
   <div class="control">
     <div class="control__header">
       <h1 class="control__title">TimeProgress</h1>
-      <a :class="['control__show-btn', `control__show-btn--${open ? 'on' : 'off'}`]" @click="open = !open"></a>
+      <a class="control__show-btn" @click="open = !open">
+        <span :class="{'icon-down-open': !open, 'icon-up-open': open}"></span>
+      </a>
     </div>
     <transition name="toggle">
       <div class="control__content" v-if="open">
@@ -65,6 +67,7 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: center;
+    font-size: 1.5em;
   }
 
   &__content {
@@ -73,22 +76,12 @@ export default {
 
   &__show-btn {
     margin-left: auto;
-    border-left: 1em solid transparent;
-    border-right: 1em solid transparent;
     cursor: pointer;
-
-    &--on {
-      border-bottom: 1em solid black;
-    }
-
-    &--off {
-      border-top: 1em solid black;
-    }
   }
 
   &__title {
     margin: 0;
-    font-size: 1.5em;
+    font-size: 1em;
   }
 }
 .toggle-enter-active, .toggle-leave-active {
