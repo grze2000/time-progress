@@ -70,10 +70,6 @@ export default {
     font-size: 1.5em;
   }
 
-  &__content {
-    margin-top: 15px;
-  }
-
   &__show-btn {
     margin-left: auto;
     cursor: pointer;
@@ -97,6 +93,7 @@ export default {
   grid-template-columns: repeat(4, 1fr) auto 1fr;
   grid-gap: 10px;
   align-items: center;
+  margin-top: 15px;
 
   &__datepicker {
     width: 100%;
