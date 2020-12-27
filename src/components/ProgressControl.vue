@@ -84,6 +84,10 @@ export default {
   transition: max-height 1s;
   overflow: hidden;
   max-height: 100px;
+
+  @media (max-width: 960px) {
+    max-height: 300px;
+  }
 }
 .toggle-enter, .toggle-leave-to {
   max-height: 0;
@@ -95,6 +99,11 @@ export default {
   align-items: center;
   margin-top: 15px;
 
+  @media (max-width: 960px) {
+    grid-template-columns: none;
+    grid-template-rows: repeat(6, 1fr);
+  }
+
   &__datepicker {
     width: 100%;
   }
@@ -102,6 +111,7 @@ export default {
   &__textfield {
     @include input-border;
     padding: 9px;
+    min-width: 0;
   }
 
   &__submit-btn {
@@ -116,6 +126,10 @@ export default {
     @include form-btn;
     height: 100%;
     box-sizing: border-box;
+
+    @media (max-width: 960px) {
+      width: 100%;
+    }
   }
 }
 </style>
