@@ -64,5 +64,6 @@ body {
   background-color: #E5E5E5;
   height: 100%;
   padding: 15px 30px;
+  box-sizing: border-box;
 }
 </style>
