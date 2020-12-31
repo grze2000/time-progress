@@ -1,4 +1,8 @@
-# time-progress
+# TimeProgress
+
+App made in Vue that visualizes the progress of time. You can add a countdown between two dates and it will be shown in a clear way with progress bar. You can add multiple counters with different titles, descriptions and colors. The counters are stored in local storage.
+
+![](https://grzegorzbabiarz.com/img/timeProgress.jpg)
 
 ## Project setup
 ```
@@ -14,11 +18,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
