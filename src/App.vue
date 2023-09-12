@@ -1,23 +1,24 @@
 <template>
   <div class="app">
     <ProgressControl @add="addProgressbar"></ProgressControl>
-    <Progress v-for="progress in progressbarList"
+    <ProgressBox v-for="progress in progressbarList"
       :key="progress.timestamp"
       :progress="progress"
       :date="date"
       @delete="deleteProgressbar(progress)"
-    ></Progress>
+      @toggleLocked="progress.locked = !progress.locked"
+    ></ProgressBox>
   </div>
 </template>
 
 <script>
-import Progress from './components/Progress.vue'
+import ProgressBox from './components/ProgressBox.vue'
 import ProgressControl from './components/ProgressControl.vue'
 
 export default {
   name: 'App',
   components: {
-    Progress,
+    ProgressBox,
     ProgressControl
   },
   data() {
